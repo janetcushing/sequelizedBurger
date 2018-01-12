@@ -1,0 +1,70 @@
+<div class="container">
+    <header class="row mainHeading">
+        <div class="col-md-12">
+            <div>
+                <br>
+                <img class="burgerImg" src="assets/img/burger.png" alt="yum yum burger">
+                <br>
+                <h2 id="eatDaBurger">Eat-Da-Burger!!</h2>
+                <br>
+            </div>
+        </div>
+    </header>
+</div>
+
+
+<div class="clear"></div>
+
+<!-- Pass in data from server.js -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <section>
+                <ul>
+                    {{#each uneatenBurger}}
+                    <li class="notEaten">
+                        <div>
+                            <span class="label"> </span> {{this.id}}
+                            <span class="label">. </span> {{this.burger_name}}
+                            <span>
+                                <button data-id="{{this.id}}" class="devour">Devour it!
+                                    <a href="/{{this.id}}"></a>
+                                </button>
+                            </span>
+                    </li>
+                    {{/each}}
+                </ul>
+            </section>
+            </div>
+            <div class="col-md-6">
+                <section>
+                    {{!-- note: grey out the burgers when they get eaten --}}
+                    <ul>
+                        {{#each eatenBurger}}
+                        <li class="eaten">
+                            <span class="label"> </span> {{this.id}}
+                            <span class="label">. </span> {{this.burger_name}}
+                        </li>
+                        {{/each}}
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    {{!--
+    <div class="clear"></div> --}}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="newBurger">
+                    <form class="create-form">
+                        <div class="form-group">
+                            <input type="text" id="newBurger" name="burger" class="textarea_msg" placeholder="Enter Burger Here">
+                        </div>
+                        <button id="submitBtn" class="submitBtn" type="submit">Submit</button>
+                        <p class="burger_msg">Enter the Burger that you want and click the "Submit" button</p>
+                    </form>
+                </div>
+            </div>
+        </div>
