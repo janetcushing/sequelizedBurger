@@ -2,12 +2,12 @@
 --- Database Schema
 --------------------------------------------
 
-DROP   DATABASE IF EXISTS burgers_db;
-CREATE DATABASE burgers_db;
+---DROP   DATABASE IF EXISTS burgers_db;
+---CREATE DATABASE burgers_db;
 
 USE burgers_db;
 
-CREATE TABLE burgers_t
+CREATE TABLE burgers_seq_t
 (
 	id INTEGER  AUTO_INCREMENT NOT NULL,
 	burger_name VARCHAR(255) NOT NULL,

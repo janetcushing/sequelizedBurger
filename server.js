@@ -5,9 +5,11 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var methodOverride = require("method-override");
-var connection = require("./config/connection");
-var orm = require("./config/orm.js");
+// var connection = require("./config/connection");
+// var orm = require("./config/orm.js");
 
+// Requiring our models for syncing
+var db = require("./models");
 
 // ==============================================================================
 // EXPRESS CONFIGURATION
@@ -35,6 +37,8 @@ app.engine("handlebars", exphbs({
 app.set("view engine", "handlebars");
 
 
+
+
 // ================================================================================
 // ROUTER
 // The below points our server to a series of "route" files.
@@ -49,6 +53,8 @@ app.use("/", routes);
 // LISTENER
 // The below code effectively "starts" our server
 // =============================================================================
-app.listen(PORT, function () {
-  console.log("App listening on PORT: " + PORT);
+db.sequelize.sync().then(function () {
+  app.listen(PORT, function () {
+    console.log("App listening on PORT: " + PORT);
+  });
 });
