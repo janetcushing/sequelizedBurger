@@ -99,7 +99,7 @@ router.post("/api/burgers", function (req, res) {
 
 // update the devoured status
 router.put("/api/devoured/:id", function (req, res) {
-    console.log("im updating the devoured burger now");
+    console.log("im updating the devoured burger  now");
     db.Burger.update({ 
         devoured: true, 
     },{where: {
