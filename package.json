@@ -1,5 +1,5 @@
 {
-  "name": "burger",
+  "name": "sequelizedBurger",
   "version": "1.0.0",
   "description": "a burger application",
   "main": "server.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/janetcushing/burger.git"
+    "url": "git+https://github.com/janetcushing/sequelizedBurger.git"
   },
   "author": "Janet Cushing",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/janetcushing/burger/issues"
+    "url": "https://github.com/janetcushing/sequelizedBurger/issues"
   },
-  "homepage": "https://github.com/janetcushing/burger#readme",
+  "homepage": "https://github.com/janetcushing/sedquelizedBurger#readme",
   "dependencies": {
     "Router": "^2.1.0",
     "body-parser": "^1.18.2",
