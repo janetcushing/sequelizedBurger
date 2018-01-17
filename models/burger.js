@@ -12,6 +12,19 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false,
       defaultValue: false
     }
- })
+    // customer_id: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: true
+    // }
+ });
+ Burger.associate = function(models) {
+  // We're saying that a Post should belong to an Author
+  // A Post can't be created without an Author due to the foreign key constraint
+  Burger.belongsTo(models.Customer, {
+    foreignKey: {
+      allowNull: true
+    }
+  });
+};
   return Burger;
 };

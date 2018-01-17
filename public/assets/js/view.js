@@ -2,16 +2,16 @@
 // functions
 //=================================================
 
-function addBurger() {
-
-    var newBurger = {
-        burger_name: $("#newBurger").val().trim()
+function addBurger(customerName, burgerName) {
+    var dataObject = {
+        customer_name: customerName,
+        burger_name: burgerName
     };
-    console.log("newBurger: " + JSON.stringify(newBurger));
+    console.log("dataObject: " + JSON.stringify(dataObject));
     // Send the POST request.
-    $.ajax("/api/burgers", {
+    $.ajax("/api/burgers/new", {
         type: "POST",
-        data: newBurger
+        data: dataObject
     }).then(
         function () {
             console.log("created the new burger");
@@ -20,12 +20,16 @@ function addBurger() {
         });
 }
 
-function updateDevourStatus(id) {  
-    console.log("id: " + id);
+function updateDevourStatus(id) {
+    console.log("im in updateDevourStatus");
+    var dataObject = {
+        id: id
+    }
+    console.log("dataObject: " + dataObject);
     // Send the POST request.
     $.ajax("/api/devoured/" + id, {
         type: "PUT",
-        data: id
+        data: dataObject
     }).then(
         function () {
             console.log("devoured a burger");
@@ -41,30 +45,43 @@ function updateDevourStatus(id) {
 $(document).ready(function () {
 
 
-            // ========================================================================
-            // When the submit button is clicked, a new row is added to the database
-            // ========================================================================
-            $(document).on('click', '#submitBtn', function (event) {
-                // Make sure to preventDefault on a submit event.
-                event.preventDefault();
-                console.log("i clicked submit");
-                addBurger();
-            });
+    // ========================================================================
+    // When the submit button is clicked, a new row is added to the database
+    // ========================================================================
+    $(document).on('click', '#submitBtn', function (event) {
+        // Make sure to preventDefault on a submit event.
+        event.preventDefault();
+        console.log("i clicked submit");
+        var customerName = $("#newCustomer").val().trim();
+        var burgerName = $("#newBurger").val().trim();
+        if (customerName && burgerName) {
+            addBurger(customerName, burgerName);
+        } else if (customerName) {
+            $("#newBurger").attr("placeholder", "**Enter Burger Name**");
+            $("#newBurger").addClass("bold_red");
+        } else if (burgerName) {
+            $("#newCustomer").attr("placeholder", "**Enter Customer Name**");
+            $("#newCustomer").addClass("bold_red");
+        } else if (!customerName && !burgerName) {
+            $("#newBurger").attr("placeholder", "**Enter Burger Name**");
+            $("#newBurger").addClass("bold_red");
+            $("#newCustomer").attr("placeholder", "**Enter Customer Name**");
+            $("#newCustomer").addClass("bold_red");
+        }
+    });
 
 
 
 
-            // ========================================================================
-            // When the devour button is clicked, the devoured flag in the database 
-            // is set to true, marking the row as "eaten"
-            // ========================================================================
-            $(document).on('click', '.devour', function (event) {
-                // Make sure to preventDefault on a submit event.
-                event.preventDefault();
-                console.log("i clicked a devour button");
-                var id = $(this).data("id");
-                updateDevourStatus(id);
-
-            });
-        });
-    
+    // ========================================================================
+    // When the devour button is clicked, the devoured flag in the database 
+    // is set to true, marking the row as "eaten"
+    // ========================================================================
+    $(document).on('click', '.devour', function (event) {
+        // Make sure to preventDefault on a submit event.
+        event.preventDefault();
+        console.log("i clicked a devour button");
+        var id = $(this).data("id");
+        updateDevourStatus(id);
+    });
+});

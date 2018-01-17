@@ -64,3 +64,8 @@ body {
 .burger_msg {
   font-size: 12px;
 }
+
+.bold_red::-webkit-input-placeholder {
+  /* font-weight: bold; */
+  color: #e61414;
+}
