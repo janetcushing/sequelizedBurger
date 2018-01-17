@@ -21,17 +21,23 @@
         <div class="col-md-6">
             <section>
                 <ul>
-                    {{#each uneatenBurger}}
-                    <li class="notEaten">
-                        <div>
-                            <span class="label"> </span> {{this.id}}
-                            <span class="label">. </span> {{this.burger_name}}
-                            <span>
-                                <button data-id="{{this.id}}" class="devour">Devour it!
-                                    <a href="/{{this.id}}"></a>
-                                </button>
-                            </span>
-                    </li>
+                    <lh id="customer">{{#each uneatenBurger}}
+                        <li class="notEaten">
+                            <div>
+                                <span class="label"> </span> {{this.customer_name}}
+                                <span class="label">ordered 
+
+                                {{!-- </span> {{this.id}} --}}
+                                {{!-- <span class="label">.  --}}
+
+                                </span> {{this.burger_name}}
+                                <span>
+                                    <button data-id="{{this.id}}" class="devour">Devour it!
+                                        <a href="/{{this.id}}"></a>
+                                    </button>
+                                </span>
+                        </li>
+                    </lh>
                     {{/each}}
                 </ul>
             </section>
@@ -42,8 +48,13 @@
                     <ul>
                         {{#each eatenBurger}}
                         <li class="eaten">
-                            <span class="label"> </span> {{this.id}}
-                            <span class="label">. </span> {{this.burger_name}}
+                            <span class="label"> </span> {{this.customer_name}}
+                            <span class="label">ate 
+
+                            {{!-- </span> {{this.id}} --}}
+                            {{!-- <span class="label">.  --}}
+
+                            </span> {{this.burger_name}}
                         </li>
                         {{/each}}
                     </ul>
@@ -60,10 +71,11 @@
                 <div class="newBurger">
                     <form class="create-form">
                         <div class="form-group">
+                            <input type="text" id="newCustomer" name="NewCustomer" class="textarea_msg" placeholder="Enter Customer Here">
                             <input type="text" id="newBurger" name="burger" class="textarea_msg" placeholder="Enter Burger Here">
                         </div>
                         <button id="submitBtn" class="submitBtn" type="submit">Submit</button>
-                        <p class="burger_msg">Enter the Burger that you want and click the "Submit" button</p>
+                        <p class="burger_msg">Enter your name and the Burger that you want and click the "Submit" button</p>
                     </form>
                 </div>
             </div>
